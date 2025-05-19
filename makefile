@@ -5,14 +5,14 @@ CC      := gcc
 
 SRC_DIR := src
 SRCS    := $(wildcard $(SRC_DIR)/*.c)
-TARGET  := calculator
+TARGETS := $(patsubst $(SRC_DIR)/%.c,%,$(SRCS))
 
 .PHONY: all clean
 
-all: $(TARGET)
+all: $(TARGETS)
 
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $^ -o $@
+%: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGETS)
