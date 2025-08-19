@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int main(void) {
-
+int prime_factorization(void) {
     int n;
     int t = 2;
     int Q;
@@ -23,7 +22,7 @@ int main(void) {
     }
 
     if (Q == n) {
-        printf("n id prime\n");
+        printf("n is prime\n");
     } else {
         printf("%d = %d\n", Q, n);
     }
