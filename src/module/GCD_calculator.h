@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-int GCD_calculator(void);
+int GCD_calculator(int argc, char *argv[]);
 
 #endif
