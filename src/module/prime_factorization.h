@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-int prime_factorization(void);
+int prime_factorization(int argc, char *argv[]);
 
 #endif
