@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "prime_factorization.h"
+
 int prime_factorization(void) {
     int n;
     int t = 2;

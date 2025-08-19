@@ -2,7 +2,8 @@
 // given two integers a and b ̸= 0 as inputs, efficiently finds gcd(a, b)
 
 #include <stdio.h>
-#include <GCD_calculator.h>
+
+#include "GCD_calculator.h"
 
 static int getRemainder(int r0, int r1) {
     int mul = 0;
