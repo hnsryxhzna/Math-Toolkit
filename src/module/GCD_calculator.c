@@ -2,8 +2,9 @@
 // given two integers a and b ̸= 0 as inputs, efficiently finds gcd(a, b)
 
 #include <stdio.h>
+#include <GCD_calculator.h>
 
-int getRemainder(int r0, int r1) {
+static int getRemainder(int r0, int r1) {
     int mul = 0;
     while (r0 > (r1 * mul)) {
         mul++;
@@ -14,7 +15,7 @@ int getRemainder(int r0, int r1) {
     return (r0 - r1 * mul);
 }
 
-int main(void) {
+int GCD_calculator(void) {
     int a, b;
     printf("Input value of a and b: ");
     scanf("%d %d", &a, &b);
