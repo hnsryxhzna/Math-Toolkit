@@ -3,16 +3,23 @@ CC      := gcc
 
 #########################################################
 
-SRC_DIR := src
-SRCS    := $(wildcard $(SRC_DIR)/*.c)
-TARGETS := $(patsubst $(SRC_DIR)/%.c,%,$(SRCS))
+# SRC_DIR := src
+# SRCS    := $(wildcard $(SRC_DIR)/*.c)
+# TARGETS := $(patsubst $(SRC_DIR)/%.c,%,$(SRCS))
 
-.PHONY: all clean
+.PHONY: all
+all: math_toolkit
 
-all: $(TARGETS)
+math_toolkit:
+	$(CC) $(CFLAGS) ./src/module/GCD_calculator.c ./src/module/prime_factorization.c ./src/math_toolkit.c -o math_toolkit
 
-%: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $< -o $@
+# %: $(SRC_DIR)/%.c
+# 	$(CC) $(CFLAGS) $< -o $@
 
+# clean:
+# 	rm -f $(TARGETS)
+
+
+.PHONY: clean
 clean:
-	rm -f $(TARGETS)
+	rm -f math_toolkit
