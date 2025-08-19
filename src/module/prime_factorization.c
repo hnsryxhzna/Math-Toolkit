@@ -1,14 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
-int main(void) {
+#include "prime_factorization.h"
 
-    int n;
+int prime_factorization(int argc, char *argv[]) {
+    if (argc != 1) {
+        fprintf(stderr, "an integer should be entered\n");
+        return 1;
+    }
+
+    int n = atoi(argv[0]);
     int t = 2;
     int Q;
 
-    printf("Input integer: ");
-    scanf("%d", &n);
     Q = n;
     int nowQ = sqrt(Q);
 
@@ -23,7 +28,7 @@ int main(void) {
     }
 
     if (Q == n) {
-        printf("n id prime\n");
+        printf("n is prime\n");
     } else {
         printf("%d = %d\n", Q, n);
     }
