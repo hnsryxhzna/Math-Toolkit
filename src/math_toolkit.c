@@ -3,7 +3,7 @@
 
 #include "module/GCD_calculator.h"
 #include "module/prime_factorization.h"
-#include "moudle/vector_multiplication.h"
+#include "module/vector_multiplication.h"
 
 int main(int argc, char *argv[]) {
     if (argc <= 1) {

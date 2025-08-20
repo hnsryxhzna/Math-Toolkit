@@ -2,34 +2,78 @@
 #include<string.h>
 #include<stdlib.h>
 
-#include"module/vector_multiplication.h"
+#include "vector_multiplication.h"
 
-int parse_param(int argc, char* argv[]) {
+int get_mid(int argc) {
+    return argc / 2 + 1;
+}
+
+int get_vector_size(int argc) {
+    return argc / 2;
+}
+
+char** convert_into_vector(int vector_size, char *argv[], double *vector) {
+    for (int i = 0; i < vector_size; i++) {
+        char *endptr; 
+        vector[i] = strtod(*argv, &endptr);
+
+        if (!(*endptr == '\0' && endptr != *argv)) {
+            fprintf(stderr, "invalid input\n");
+            return argv;
+        }
+
+        argv++;
+    }
+
+    return argv;
+}
+
+int parse_param(int argc, char* argv[], double *vector1, double *vector2) {
+    int mid = get_mid(argc);
+    int vector_size = get_vector_size(argc);
+
     if (argc % 2 != 1) {
+        fprintf(stderr, "invalid input\n");
+        return 1;
+    } else if (strcmp(argv[mid], ",") != 0) {
         fprintf(stderr, "invalid input\n");
         return 1;
     }
 
-    for (int counter = 0; counter < argc; counter++) {
-        char *endptr;
-        int value = argv[counter];
+    argv = convert_into_vector(vector_size, argv, vector1);
+    if (strcmp(*argv, ",") != 0) {
+        fprintf(stderr, "invalid input\n");
+        return 1;
+    }
+    argv++;
+    argv = convert_into_vector(vector_size, argv, vector2);
 
-        strtod(value, &endptr);
+    // TODO: if mid == 1
+    return 0;
+}
 
-        if (!(*endptr == '\0' && endptr != value)) {
-            fprintf(stderr, "invalid input\n");
-        }
+double vector_mul(double *vector1, double *vector2, int vector_size) {
+    double result = 0;
 
-        if (argv[counter] == 44) {
-        }
+    for (int i = 0; i < vector_size; i++) {
+        result += vector1[i] * vector2[i];
     }
 
-    return 0;
+    return result;
 }
 
 int vector_multiplication(int argc, char* argv[]) {
+    int vector_size = get_vector_size(argc);
 
-    
+    double *vec1 = malloc(vector_size * sizeof(double));
+    double *vec2 = malloc(vector_size * sizeof(double));
+
+    parse_param(argc, argv, vec1, vec2);
+    printf("%f\n", vector_mul(vec1, vec2, vector_size));
+
+    free(vec1);
+    free(vec2);
 
     return 0;
 }
+
