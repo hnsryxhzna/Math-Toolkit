@@ -19,7 +19,7 @@ char** convert_into_vector(int vector_size, char *argv[], double *vector) {
 
         if (!(*endptr == '\0' && endptr != *argv)) {
             fprintf(stderr, "input should be a valid number\n");
-            return argv;
+            exit(EXIT_FAILURE);
         }
 
         argv++;
@@ -34,10 +34,10 @@ int parse_param(int argc, char* argv[], double *vector1, double *vector2) {
 
     if (strcmp(argv[mid], ",") != 0) {
         fprintf(stderr, "usage: [vector1] , [vector2]\n");
-        return 1;
+        exit(EXIT_FAILURE);
     } else if (argc % 2 != 1) {
         fprintf(stderr, "invalid input: two vectors should be in same size\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     argv = convert_into_vector(vector_size, argv, vector1);
