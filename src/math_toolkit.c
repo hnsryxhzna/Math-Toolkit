@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
         prime_factorization(argc - 2, &argv[2]);
     } else if (strcmp(argv[1], "-v") == 0) {
         vector_multiplication(argc - 2, &argv[2]);
-    } else if (strcmp(argv[1], "-i")) {
+    } else if (strcmp(argv[1], "-i") == 0) {
         isbn_check(argc - 2, &argv[2]);
     } else {
         fprintf(stderr, "unkonwn option %s\nusage: %s\n \t[-g] for GCD calculation\n \t[-f] for prime factorization\n", argv[1], argv[0]);
