@@ -7,7 +7,7 @@
 int prime_factorization(int argc, char *argv[]) {
     if (argc != 1) {
         fprintf(stderr, "an integer should be entered\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     int n = atoi(argv[0]);

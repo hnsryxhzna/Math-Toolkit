@@ -20,7 +20,7 @@ static int getRemainder(int r0, int r1) {
 int GCD_calculator(int argc, char *argv[]) {
     if (argc != 2) {
         fprintf(stderr, "two integers should be entered\n");
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     int a = atoi(argv[0]);
