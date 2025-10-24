@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "module/GCD_calculator.h"
 #include "module/prime_factorization.h"
@@ -9,7 +10,7 @@
 int main(int argc, char *argv[]) {
     if (argc <= 1) {
         fprintf(stderr, "usage: %s\n \t[-g] for GCD calculation\n \t[-f] for prime factorization\n", argv[0]);
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
     if (strcmp(argv[1], "-g") == 0) {

@@ -18,8 +18,8 @@ char** convert_into_vector(int vector_size, char *argv[], double *vector) {
         vector[i] = strtod(*argv, &endptr);
 
         if (!(*endptr == '\0' && endptr != *argv)) {
-            fprintf(stderr, "invalid input1\n");
-            return argv;
+            fprintf(stderr, "input should be a valid number\n");
+            exit(EXIT_FAILURE);
         }
 
         argv++;
@@ -32,21 +32,15 @@ int parse_param(int argc, char* argv[], double *vector1, double *vector2) {
     int mid = get_mid(argc);
     int vector_size = get_vector_size(argc);
 
-    if (argc % 2 != 1) {
-        fprintf(stderr, "invalid input2\n");
-        return 1;
-    } else if (strcmp(argv[mid], ",") != 0) {
-        printf("size %d\n", argc);
-        printf("argc[mid] is %s\n", argv[mid]);
-        fprintf(stderr, "invalid input3\n");
-        return 1;
+    if (strcmp(argv[mid], ",") != 0) {
+        fprintf(stderr, "usage: [vector1] , [vector2]\n");
+        exit(EXIT_FAILURE);
+    } else if (argc % 2 != 1) {
+        fprintf(stderr, "invalid input: two vectors should be in same size\n");
+        exit(EXIT_FAILURE);
     }
 
     argv = convert_into_vector(vector_size, argv, vector1);
-    if (strcmp(*argv, ",") != 0) {
-        fprintf(stderr, "invalid input4\n");
-        return 1;
-    }
     argv++;
     argv = convert_into_vector(vector_size, argv, vector2);
 
