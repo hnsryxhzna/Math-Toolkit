@@ -1,6 +1,14 @@
 import numpy as np
 
-codeword_lengths = [1, 1, 1, 2, 2, 3, 4, 4]
+print("Input symbols:")
+codeword_lengths = input()
+
+try:
+    codeword_lengths = np.fromstring(codeword_lengths, dtype=float, sep=' ')
+except ValueError:
+    print("Error: You entered something that wasn't a number.")
+
+# codeword_lengths = [1, 1, 1, 2, 2, 3, 4, 4]
 radix = 2
 sum = 0
 
