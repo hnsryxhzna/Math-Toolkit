@@ -8,7 +8,6 @@ try:
 except ValueError:
     print("Error: You entered something that wasn't a number.")
 
-# codeword_lengths = [1, 1, 1, 2, 2, 3, 4, 4]
 radix = 2
 sum = 0
 
