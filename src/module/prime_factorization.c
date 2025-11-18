@@ -6,32 +6,75 @@
 
 int prime_factorization(int argc, char *argv[]) {
     if (argc != 1) {
-        fprintf(stderr, "an integer should be entered\n");
-        exit(EXIT_FAILURE);
+        fprintf(stderr, "usage: %s <positive-integer>\n", argv[0]);
+        return 1;
     }
 
-    int n = atoi(argv[0]);
-    int t = 2;
-    int Q;
+    long long n = atoll(argv[0]);
+    if (n < 2) {
+        printf("%lld has no prime factorization (need n >= 2)\n", n);
+        return 0;
+    }
 
-    Q = n;
-    int nowQ = sqrt(Q);
+    long long q = n;
+    int first = 1;
 
-    while (t < nowQ) {
-        if (Q % t == 0) {
-            printf("%d * ", t);
-            Q = Q / t;
-            nowQ = sqrt(Q);
-        } else {
-            t++;
+    printf("%lld = ", n);
+
+    while (q % 2 == 0) {
+        if (!first) {
+            printf(" * ");
+        }
+        printf("2");
+        first = 0;
+        q /= 2;
+    }
+
+    for (long long t = 3; t <= q / t; t += 2) {
+        while (q % t == 0) {
+            if (!first) {
+                printf(" * ");
+            }
+            printf("%lld", t);
+            first = 0;
+            q /= t;
         }
     }
 
-    if (Q == n) {
-        printf("n is prime\n");
-    } else {
-        printf("%d = %d\n", Q, n);
+    if (q > 1) {
+        if (!first) {
+            printf(" * ");
+        }
+        printf("%lld", q);
     }
 
+    printf("\n");
     return 0;
+
+    // long long Q = n;
+    // long long t = 2;
+
+    // printf("%lld = ", n);
+
+    // // pull out factor 2s
+    // while (Q % 2 == 0) {
+    //     printf("2");
+    //     Q /= 2;
+    //     if (Q > 1) printf(" * ");
+    // }
+
+    // // odd factors
+    // for (t = 3; t * t <= Q; t += 2) {
+    //     while (Q % t == 0) {
+    //         printf("%lld", t);
+    //         Q /= t;
+    //         if (Q > 1) printf(" * ");
+    //     }
+    // }
+
+    // // leftover prime > 1
+    // if (Q > 1) printf("%lld", Q);
+
+    // printf("\n");
+    // return 0;
 }
