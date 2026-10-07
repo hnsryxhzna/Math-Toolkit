@@ -18,5 +18,5 @@ int main() {
 
     printf("%llu\n", seed);
 
-    return seed;
+    return 0;
 }
